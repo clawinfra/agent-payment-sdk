@@ -8,7 +8,6 @@
 
 import { sha512 } from '@noble/hashes/sha2';
 import * as ed from '@noble/ed25519';
-import { sha512 as sha512Hash } from '@noble/hashes/sha2';
 import type { AgentDID, AgentKeypair, ChainConfig, IChainClient } from './types';
 
 // Configure ed25519 to use sha512
@@ -19,7 +18,7 @@ ed.etc.sha512Sync = (...msgs: Uint8Array[]): Uint8Array => {
     merged.set(m, offset);
     offset += m.length;
   }
-  return sha512Hash(merged);
+  return sha512(merged);
 };
 
 /** Minimum DID length to be considered valid */
